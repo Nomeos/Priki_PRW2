@@ -19,9 +19,11 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+        @livewireStyles
     </head>
     <body class="antialiased">
         <h1>hello world</h1>
         @yield('content')
+        @livewireScripts
     </body>
 </html>
