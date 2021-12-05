@@ -1,6 +1,22 @@
 <div>
-    Afficher les practices jeunes de <input wire:model="days" wire: type="number"> jours.
+
+    Afficher les practices jeunes de <input style="width: 50px" wire:model="days" wire: type="number"> jours.
     @foreach ($practices as $practice)
-        <p>{{$practice->description}}<br>{{$practice->domain->name}}</p>
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    Domain: {{$practice->domain->name}}
+                </p>
+            </header>
+
+            <div class="card-content">
+                <div class="content">
+                    {{$practice->description}}
+                </div>
+            </div>
+        </div>
     @endforeach
+
+
+
 </div>
