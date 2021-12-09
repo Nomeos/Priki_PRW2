@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Domain;
+use App\Models\Practice;
 use Illuminate\Http\Request;
-use \App\Models\Domain;
+
 class DomainController extends Controller
 {
-    public function index($slug="all")
+    public function index($id)
     {
-        if ($slug=="all"){
-            $domains=Domain::All();
-        }else{
-            $domains=Domain::where('slug',$slug)->get();
-        }
-        return view('Domains')->with(["domains" => $domains]);
+        return view('domain',["domain" => Domain::find($id)]);
+
     }
 }

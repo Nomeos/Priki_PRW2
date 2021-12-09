@@ -8,6 +8,6 @@ class HomeController extends Controller
 {
     public function index($filterValue)
     {
-       // return view('home')->with(["filterValue" => $filterValue]);
+       return view('home',['filterValue' => $filterValue]);
     }
 }

@@ -19,5 +19,4 @@ Route::get('/', function () {
     return view('Home')->with('filterValue', 5);
 });
 Route::get('/home/{filterValue}', [HomeController::class, 'index']);
-Route::get('/Domain', [DomainController::class,'index']);
-Route::get('/Domain/{slug}',[DomainController::class,'index']);
+Route::get('/domain/{id}', [DomainController::class, 'index']);
