@@ -5,7 +5,7 @@
     </a>
     <div class="navbar-dropdown">
         @foreach($domains as $domain)
-            <a class="navbar-item">
+            <a href="domain/{{$domain->id}}" class="navbar-item">
                 {{$domain->name}} ({{$domain->practices()->count()}})
             </a>
         @endforeach

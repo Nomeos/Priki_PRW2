@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\DomainController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Home')->with('filterValue', 5);
+    return view('home');
 });
+
 Route::get('/home/{filterValue}', [HomeController::class, 'index']);
 Route::get('/domain/{id}', [DomainController::class, 'index']);
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
