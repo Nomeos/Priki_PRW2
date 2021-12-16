@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <livewire:home-practice />
+    <livewire:home-practice :days="$filterValue" />
 
 @endsection
 @section('navbarContent')

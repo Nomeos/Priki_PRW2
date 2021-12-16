@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index($filterValue)
+    private $filterValue = 5;
+    public function index()
     {
-       return view('home',['filterValue' => $filterValue]);
+       return view('home',['filterValue' => $this->filterValue]);
     }
 }
