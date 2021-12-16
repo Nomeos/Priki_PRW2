@@ -5,7 +5,9 @@ namespace Database\Seeders;
 use App\Models\Opinion;
 use App\Models\Practice;
 use App\Models\User;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class OpinionSeeder extends Seeder
 {
@@ -42,11 +44,21 @@ class OpinionSeeder extends Seeder
                      "Eussiez-vous eu, d'ailleurs, l'invention qu'il faut Pour pouvoir là, devant ces nobles galeries, Me servir toutes ces folles plaisanteries,",
                      "Que vous n'en eussiez pas articulé le quart De la moitié du commencement d'une, car Je me les sers moi-même, avec assez de verve, Mais je ne permets pas qu'un autre me les serve.",
                  ] as $opinion) {
-            Opinion::create([
+            $opinionInstance = Opinion::create([
                 'description' => $opinion,
                 'practice_id' => Practice::all()->random()->id,
                 'user_id' => User::all()->random()->id
             ]);
+            $faker = Factory::create();
+            for ($i = 0; $i < random_int(0, 6); $i++) {
+                $comment = [
+                    'user_id' => User::all()->random()->id,
+                    'opinion_id' => $opinionInstance->id,
+                    'comment' => $faker->paragraph,
+                    'points' => $faker->numberBetween(-1, 1),
+                ];
+                DB::table('user_opinions')->insert($comment);
+            }
         }
-}
+    }
 }
