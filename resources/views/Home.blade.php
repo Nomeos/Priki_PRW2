@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-hello
+    <livewire:home-practice />
 
 @endsection
 @section('navbarContent')
