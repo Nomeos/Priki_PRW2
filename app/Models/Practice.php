@@ -25,8 +25,9 @@ class Practice extends Model
         return $this->belongsTo(PublicationState::class);
     }
 
-    public function isPublic()
+    public function isPublished()
     {
-        return PublicationState::find($this->publication_state_id)->slug == "PUB";
+
+        return $this->publicationState->slug == 'PUB';
     }
 }
