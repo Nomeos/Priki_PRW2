@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Opinion extends Model
 {
     use HasFactory;
+
+    public function practice()
+    {
+        return $this->belongsTo(Practice::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

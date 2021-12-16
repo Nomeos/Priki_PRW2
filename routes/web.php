@@ -22,6 +22,8 @@ Route::get('/domain/{id}', [DomainController::class, 'index']);
 Route::get('/practices',[PracticeController::class, 'index']);
 Route::get('/practice/{id}',[PracticeController::class, 'show']);
 
+Route::get('/practice/{id}/opinions',[PracticeController::class, 'opinions']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
