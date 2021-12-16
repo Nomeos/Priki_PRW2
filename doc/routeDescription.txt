@@ -1,0 +1,11 @@
+HomeController =>
+index -> '/' Affiche les modifications récentes des pratiques Story Modifications récentes
+
+DomainController =>
+index -> '/domain' Affiche toutes les pratiques triées par domaines
+show -> '/domain/{slug}' Affiche toutes les pratiques pour un domaine en particulier Story Liste par domaine
+
+
+PracticeController =>
+index -> '/practice' Affiche toutes les pratiques (Peut faire référence au menu ?)
+show -> '/practice/{id}' Permet de consulter une pratique en détail Story Consultation d'une pratique

@@ -51,6 +51,10 @@
             </div>
         </div>
     </nav>
+    @if($errors->any())
+        <h4 style="color: red;font-weight: bold">{{$errors->first()}}</h4>
+    @endif
+
     @yield('content')
         @livewireScripts
 

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DomainController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PracticeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +23,8 @@ Route::get('/', function () {
 Route::get('/home/{filterValue}', [HomeController::class, 'index']);
 Route::get('/domain/{id}', [DomainController::class, 'index']);
 
+Route::get('/practices',[PracticeController::class, 'index']);
+Route::get('/practice/{id}',[PracticeController::class, 'show']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
