@@ -21,15 +21,6 @@ class PracticeController extends Controller
             return redirect()->back()->withErrors(['msg' => 'The practice doesn\'t exist.']);
         }
 
-        return view('showPractice', ['practice' => $practice, 'created_at' => Carbon::parse($practice->created_at)->format('d M Y'), 'updated_at' => Carbon::parse($practice->updated_at)->format('d M Y')]);
-    }
-    public function opinions($id)
-    {
-        $practice = Practice::find($id);
-        if ($practice == null) {
-            return redirect()->back()->withErrors(['msg' => 'The practice doesn\'t exist.']);
-        }
-
-        return view('practiceOpinions', ['opinions' => $practice->opinions()->get()]);
+        return view('showPractice', ['practice' => $practice,'opinions' => $practice->opinions()->get()]);
     }
 }

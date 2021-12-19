@@ -23,5 +23,22 @@ class Opinion extends Model
         return $this->hasMany(UserOpinion::class);
     }
 
+    public function getDownVote(){
+        $count = $this->userOpinion()->get()->countBy(function($item){
+            return $item['points'];
+        });
+        return array_key_exists(-1,$count->toArray()) ? $count[-1] : 0;
+    }
+    public function getUpVote(){
+        $count = $this->userOpinion()->get()->countBy(function($item){
+            return $item['points'];
+        });
+
+        return array_key_exists(1,$count->toArray()) ? $count[1] : 0;
+
+
+
+    }
+
 
 }
