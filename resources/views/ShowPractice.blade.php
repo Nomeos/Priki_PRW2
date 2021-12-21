@@ -49,7 +49,18 @@
             <div class="card-content">
                 <div class="content">
                     {{$opinion->description}}
-
+                    <br><br><b>References :</b>
+                    <ul>
+                    @foreach($opinion->references()->get() as $reference)
+                        <li>
+                        @if($reference->url != Null)
+                        <a href="{{$reference->url}}" target="_blank">{{$reference->description}}</a><br>
+                        @else
+                            {{$reference->description}}
+                        @endif
+                        </li>
+                    @endforeach
+                    </ul>
                 </div>
             </div>
             <footer class="card-footer">

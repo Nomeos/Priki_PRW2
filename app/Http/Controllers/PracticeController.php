@@ -20,7 +20,6 @@ class PracticeController extends Controller
         if ($practice == null) {
             return redirect()->back()->withErrors(['msg' => 'The practice doesn\'t exist.']);
         }
-
-        return view('showPractice', ['practice' => $practice,'opinions' => $practice->opinions()->get()]);
+        return view('showPractice', ['practice' => $practice, 'opinions' => $practice->opinions()->get()]);
     }
 }

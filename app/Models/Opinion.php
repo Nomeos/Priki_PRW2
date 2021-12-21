@@ -23,6 +23,10 @@ class Opinion extends Model
         return $this->hasMany(UserOpinion::class);
     }
 
+    public function references(){
+        return $this->belongsToMany(Reference::class);
+    }
+
     public function getDownVote(){
         $count = $this->userOpinion()->get()->countBy(function($item){
             return $item['points'];
