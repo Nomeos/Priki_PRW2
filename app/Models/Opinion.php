@@ -33,11 +33,7 @@ class Opinion extends Model
         $count = $this->userOpinion()->get()->countBy(function($item){
             return $item['points'];
         });
-
         return array_key_exists(1,$count->toArray()) ? $count[1] : 0;
-
-
-
     }
 
 

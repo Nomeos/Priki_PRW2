@@ -42,7 +42,7 @@
         <div class="card">
             <header class="card-header">
                 <p class="card-header-title">
-                    Comment number {{$opinion->id}}
+                    <a href="#">Opinion of {{$opinion->user->fullname}}</a>
                 </p>
             </header>
 
@@ -53,11 +53,6 @@
                 </div>
             </div>
             <footer class="card-footer">
-                <p class="card-footer-item">
-                  <span>
-                    Author : <a href="#">{{$opinion->user->fullname}}</a>
-                  </span>
-                </p>
                 <p class="card-footer-item">
                   <span>
                     Date created : <a href="#">{{\Carbon\Carbon::Parse($opinion->created_at)->format("d M Y")}}</a>
