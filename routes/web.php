@@ -4,6 +4,7 @@ use App\Http\Controllers\DomainController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\PracticeController;
+use App\Http\Controllers\ReferenceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,8 @@ Route::get('/practices',[PracticeController::class, 'index']);
 Route::get('/practice/{id}',[PracticeController::class, 'show']);
 
 Route::get('/opinion/{id}',[OpinionController::class, 'show']);
+
+Route::get('/references',[ReferenceController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -406,12 +406,12 @@
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item">
+            <a href="/" class="navbar-item">
                 Home
             </a>
 
-            <a class="navbar-item">
-                Documentation
+            <a href="/references" class="navbar-item">
+                References
             </a>
 
 
