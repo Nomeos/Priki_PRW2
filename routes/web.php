@@ -19,14 +19,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/domain/{id}', [DomainController::class, 'index']);
+Route::get('/domains/{id}', [DomainController::class, 'index']);
 
 Route::get('/practices',[PracticeController::class, 'index']);
-Route::get('/practice/{id}',[PracticeController::class, 'show']);
+Route::get('/practices/{id}',[PracticeController::class, 'show']);
 
-Route::get('/opinion/{id}',[OpinionController::class, 'show']);
+Route::get('/opinions/{id}',[OpinionController::class, 'show']);
 
-Route::get('/references',[ReferenceController::class, 'index']);
+Route::resource('references', ReferenceController::class);
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

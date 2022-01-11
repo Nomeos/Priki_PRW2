@@ -49,7 +49,12 @@
             <div class="card-content">
                 <div class="content">
                     {{$opinion->description}}
+
+                    @if(!$opinion->references()->get()->isEmpty())
                     <br><br><b>References :</b>
+                    @else
+                    <br><br><b>References : None</b>
+                    @endif
                     <ul>
                     @foreach($opinion->references()->get() as $reference)
                         <li>
