@@ -18,4 +18,5 @@
             </div>
         </div>
     @endforeach
+    <a href="references/create"><button class="button is-rounded is-fullwidth is-success">Create new reference</button></a>
 @endsection
