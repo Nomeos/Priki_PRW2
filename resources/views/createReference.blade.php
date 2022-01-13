@@ -12,15 +12,15 @@
                 @csrf
 
             <!-- Email Address -->
-                <div>
-                    <x-label value="{{ __('Text') }}" />
+                <div class="mt-4">
+                    <x-label value="{{ __('Description') }}*" />
 
-                    <x-input id="text" class="block mt-1 w-full" name="text" required autofocus />
+                    <x-input id="text" class="block mt-1 w-full" type="text" name="text" required autofocus />
                 </div>
 
                 <!-- Password -->
                 <div class="mt-4">
-                    <x-label for="url" value="Url" />
+                    <x-label for="url" value="Url*" />
 
                     <x-input id="url" class="block mt-1 w-full" type="url" name="url"/>
                 </div>
@@ -34,6 +34,9 @@
                     </x-button>
                 </div>
             </form>
+            <span>The description requires a minimum of 10 character length and the URL must be valid for creating the reference.</span>
         </x-auth-card>
+
     </x-guest-layout>
+
 @endsection

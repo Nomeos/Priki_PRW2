@@ -1,5 +1,8 @@
 @extends('layout')
 @section('content')
+    @if(session()->has('ok'))
+        <h4 style="color: green;font-weight: bold">{{session()->get('ok')}}</h4>
+    @endif
     @foreach($references as $reference)
         <div class="card">
             <header class="card-header">

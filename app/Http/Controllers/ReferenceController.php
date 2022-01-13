@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reference;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class ReferenceController extends Controller
 {
@@ -15,7 +16,7 @@ class ReferenceController extends Controller
      */
     public function index()
     {
-        return view('reference',['references'=>Reference::all()]);
+        return view('reference', ['references' => Reference::all()]);
     }
 
     /**
@@ -31,19 +32,27 @@ class ReferenceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-
-        dd($request->get('text'));
+        if (!Reference::validateUrl($request->all())) {
+            return redirect()->back()->withErrors(['msg' => 'The URL isn\'t write correctly.']);
+        } elseif (!Reference::validateDescription($request)) {
+            return redirect()->back()->withErrors(['msg' => 'The Description isn\'t write correctly.']);
+        }
+        $temp = new Reference();
+        $temp->url = $request->get("url");
+        $temp->description = $request->get("text");
+        $temp->save();
+        return redirect()->action([ReferenceController::class, 'index'])->with(['ok'=>'The reference has been successfully added']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -54,7 +63,7 @@ class ReferenceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
@@ -65,8 +74,8 @@ class ReferenceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -77,7 +86,7 @@ class ReferenceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)
