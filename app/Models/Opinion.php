@@ -20,7 +20,7 @@ class Opinion extends Model
     }
 
     public function userOpinion(){
-        return $this->hasMany(UserOpinion::class);
+        return $this->belongsToMany(User::class,"user_opinions")->withPivot("comment","points");
     }
 
     public function references(){
@@ -29,13 +29,13 @@ class Opinion extends Model
 
     public function getDownVote(){
         $count = $this->userOpinion()->get()->countBy(function($item){
-            return $item['points'];
+            return $item->pivot->points;
         });
         return array_key_exists(-1,$count->toArray()) ? $count[-1] : 0;
     }
     public function getUpVote(){
         $count = $this->userOpinion()->get()->countBy(function($item){
-            return $item['points'];
+            return $item->pivot->points;
         });
         return array_key_exists(1,$count->toArray()) ? $count[1] : 0;
     }

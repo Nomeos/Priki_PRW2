@@ -42,13 +42,13 @@
             <div class="card">
                 <header class="card-header">
                     <p class="card-header-title">
-                        Comment of  {{$useropinion->user->fullname}}
+                        Comment of  {{$useropinion->fullname}}
                     </p>
                 </header>
 
                 <div class="card-content">
                     <div class="content">
-                        {{$useropinion->comment}}
+                        {{$useropinion->pivot->comment}}
 
                     </div>
                 </div>
