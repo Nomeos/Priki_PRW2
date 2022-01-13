@@ -41,12 +41,14 @@ class ReferenceController extends Controller
             return redirect()->back()->withErrors(['msg' => 'The URL isn\'t write correctly.']);
         } elseif (!Reference::validateDescription($request)) {
             return redirect()->back()->withErrors(['msg' => 'The Description isn\'t write correctly.']);
+        } elseif (Reference::checkReferenceExist($request)) {
+            return redirect()->back()->withErrors(['msg' => 'The URL already exists in another reference.']);
         }
         $temp = new Reference();
         $temp->url = $request->get("url");
         $temp->description = $request->get("text");
         $temp->save();
-        return redirect()->action([ReferenceController::class, 'index'])->with(['ok'=>'The reference has been successfully added']);
+        return redirect()->action([ReferenceController::class, 'index'])->with(['ok' => 'The reference has been successfully added']);
     }
 
     /**

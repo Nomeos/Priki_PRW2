@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Validator;
 class Reference extends Model
 {
     use HasFactory;
-    public $timestamps=false;
+
+    public $timestamps = false;
     protected $fillable = [
         'description'
     ];
@@ -22,12 +23,23 @@ class Reference extends Model
         }
         return true;
     }
+
     public static function validateDescription($request): bool
     {
-        $length = preg_match_all ('/[^ ]/' , $request->get('text'));
-        if($length <= 9){
+        $length = preg_match_all('/[^ ]/', $request->get('text'));
+        if ($length <= 9) {
             return false;
         }
         return true;
     }
+
+    public static function checkReferenceExist($request): bool
+    {
+        $reference = Reference::where('url', '=', $request->get('url'))->first();
+        if ($reference === null) {
+            return false;
+        }
+        return true;
+    }
+
 }
