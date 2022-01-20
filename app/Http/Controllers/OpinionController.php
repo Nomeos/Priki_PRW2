@@ -13,7 +13,7 @@ class OpinionController extends Controller
         if ($opinion == null) {
             return redirect()->back()->withErrors(['msg' => 'The opinion doesn\'t exist.']);
         }
-        $useropinions = $opinion->userOpinion;
+        $useropinions = $opinion->comments;
 
         return view('showOpinion', ['useropinions' => $useropinions, 'opinion' => $opinion]);
     }

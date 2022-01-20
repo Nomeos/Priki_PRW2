@@ -76,7 +76,7 @@
                 </p>
                 <p class="card-footer-item">
                   <span>
-                      Number of comments ({{$opinion->userOpinion()->get()->count()}})
+                      Number of comments ({{$opinion->comments()->get()->count()}})
                   </span>
                 </p>
                 <p class="card-footer-item">

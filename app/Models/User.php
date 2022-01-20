@@ -42,7 +42,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function userOpinions(){
-        return $this->hasMany(UserOpinion::class);
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function comments(){
+        return $this->belongsToMany(Opinion::class,"user_opinions")->withPivot("comment","points");
     }
 }

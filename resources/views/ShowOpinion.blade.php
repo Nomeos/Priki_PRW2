@@ -55,5 +55,9 @@
             </div>
         @endforeach
     @endif
+    <button class="button accordion is-rounded is-fullwidth is-success">Comment</button>
+    <div class="panel">
+        <p>Lorem ipsum...</p>
+    </div>
 
 @endsection
