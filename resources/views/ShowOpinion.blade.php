@@ -36,7 +36,7 @@
 
                 </div>
             </div>
-        </div>
+        </div>0.
     @else
         @foreach($useropinions as $useropinion)
             <div class="card">
