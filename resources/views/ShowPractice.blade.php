@@ -42,7 +42,7 @@
         <div class="card">
             <header class="card-header">
                 <p class="card-header-title">
-                    <a href="#">Opinion of {{$opinion->user->fullname}}</a>
+                    <a href="/opinions/{{$opinion->id}}">Opinion of {{$opinion->user->fullname}}</a>
                 </p>
             </header>
 
