@@ -56,8 +56,12 @@
         @endforeach
     @endif
     <button class="button accordion is-rounded is-fullwidth is-success">Comment</button>
+    @if(!Auth::check())
     <div class="panel">
-        <p>Lorem ipsum...</p>
+        You have to be connected for comment an opinion. Please <a href="/login"><u>Login</u></a> or <a href="/register"><u>Register</u></a>.
     </div>
+    @else
+
+    @endif
 
 @endsection
