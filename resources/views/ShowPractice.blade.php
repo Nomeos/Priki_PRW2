@@ -42,14 +42,19 @@
         <div class="card">
             <header class="card-header">
                 <p class="card-header-title">
-                    <a href="#">Opinion of {{$opinion->user->fullname}}</a>
+                    <a href="/opinions/{{$opinion->id}}">Opinion of {{$opinion->user->fullname}}</a>
                 </p>
             </header>
 
             <div class="card-content">
                 <div class="content">
                     {{$opinion->description}}
+
+                    @if(!$opinion->references()->get()->isEmpty())
                     <br><br><b>References :</b>
+                    @else
+                    <br><br><b>References : None</b>
+                    @endif
                     <ul>
                     @foreach($opinion->references()->get() as $reference)
                         <li>
@@ -71,7 +76,7 @@
                 </p>
                 <p class="card-footer-item">
                   <span>
-                      Number of comments ({{$opinion->userOpinion()->get()->count()}})
+                      Number of comments ({{$opinion->comments()->get()->count()}})
                   </span>
                 </p>
                 <p class="card-footer-item">

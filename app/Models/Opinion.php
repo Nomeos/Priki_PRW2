@@ -19,25 +19,26 @@ class Opinion extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function userOpinion(){
-        return $this->hasMany(UserOpinion::class);
+    /**
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function comments(){
+        return $this->belongsToMany(User::class,"user_opinions")->withPivot("comment","points");
     }
+
+
+
 
     public function references(){
         return $this->belongsToMany(Reference::class);
     }
 
     public function getDownVote(){
-        $count = $this->userOpinion()->get()->countBy(function($item){
-            return $item['points'];
-        });
-        return array_key_exists(-1,$count->toArray()) ? $count[-1] : 0;
+        return $this->comments()->wherePivot('points', '<', 0)->count();
     }
     public function getUpVote(){
-        $count = $this->userOpinion()->get()->countBy(function($item){
-            return $item['points'];
-        });
-        return array_key_exists(1,$count->toArray()) ? $count[1] : 0;
+        return $this->comments()->wherePivot('points', '>', 0)->count();
     }
 
 
