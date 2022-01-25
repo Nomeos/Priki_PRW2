@@ -29,7 +29,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('indexMod', function (User $user) {
-            return $user->role_id === Role::where('slug','MOD')->get('id');
+            $role = Role::where('slug','MOD')->first();
+            return $user->role_id === $role->id;
         });
     }
 }

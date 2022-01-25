@@ -22,7 +22,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/domains/{id}', [DomainController::class, 'index']);
 
 Route::get('/practices',[PracticeController::class, 'index']);
-Route::get('/practices/mod',[PracticeController::class, 'indexMod'])->middleware("Auth");
+Route::get('/practices/mod',[PracticeController::class, 'indexMod']);
 Route::get('/practices/{id}',[PracticeController::class, 'show']);
 
 Route::get('/opinions/{id}',[OpinionController::class, 'show']);
