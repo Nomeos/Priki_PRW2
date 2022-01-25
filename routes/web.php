@@ -25,6 +25,7 @@ Route::get('/practices',[PracticeController::class, 'index']);
 Route::get('/practices/{id}',[PracticeController::class, 'show']);
 
 Route::get('/opinions/{id}',[OpinionController::class, 'show']);
+Route::post('/opinions/{id}',[OpinionController::class, 'store']);
 
 Route::resource('references', ReferenceController::class);
 
