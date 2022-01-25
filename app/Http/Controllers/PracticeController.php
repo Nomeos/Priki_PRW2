@@ -22,4 +22,9 @@ class PracticeController extends Controller
         }
         return view('showPractice', ['practice' => $practice, 'opinions' => $practice->opinions()->get()]);
     }
+
+    public function indexMod()
+    {
+        return view('practiceMod');
+    }
 }

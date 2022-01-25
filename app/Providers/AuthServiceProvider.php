@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Practice;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -25,6 +28,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('indexMod', function (User $user) {
+            return $user->role_id === Role::where('slug','MOD')->get('id');
+        });
     }
 }
