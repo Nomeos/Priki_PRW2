@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Practice extends Model
 {
@@ -34,5 +35,14 @@ class Practice extends Model
     {
 
         return $this->publicationState->slug == 'PUB';
+    }
+
+    public function hasUserMadeOpinion()
+    {
+        return Opinion::all()
+            ->where('user_id', '==', Auth::user()->id)
+            ->where('practice_id', '==', $this->id)
+            ->get()
+            ->isEmpty();
     }
 }

@@ -41,5 +41,14 @@ class PracticeController extends Controller
         return view('practiceMod', ['practices' => $practices]);
     }
 
+    public function publish(Request $request){
+        $practice = Practice::find($request->input('practice'));
+        if (Auth::user()->cannot('publishPractice', $practice)) {
+            abort(403);
+        }
+        $practice->publish();
+        return redirect()->back()->with(['ok' => 'The practice has been successfully added.']);
+    }
+
 
 }
