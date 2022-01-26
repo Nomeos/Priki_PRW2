@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class PracticeController extends Controller
@@ -30,6 +31,15 @@ class PracticeController extends Controller
         if (! Gate::allows('indexMod', Auth::user())) {
             abort(403);
         }
-        return view('practiceMod');
+
+
+        $practices = DB::table('practices')
+            ->orderBy('domain_id')
+            ->orderBy('publication_state_id')
+            ->get();
+
+        return view('practiceMod', ['practices' => $practices]);
     }
+
+
 }
