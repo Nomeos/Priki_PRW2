@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Practice extends Model
 {
@@ -34,5 +35,16 @@ class Practice extends Model
     {
 
         return $this->publicationState->slug == 'PUB';
+    }
+
+    public function userHasOpinion(User $user){
+        return $this->hasMany(Opinion::class)->where("user_id","=",$user->id)->get()->Count()>0;;
+    }
+
+    public function publish()
+    {
+        $publicationState = PublicationState::whereSlug("PUB")->first();
+        $this->publicationState()->associate($publicationState);
+        $this->save();
     }
 }

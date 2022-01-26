@@ -52,6 +52,6 @@
                 @endif
             @endforeach
         @endif
-
     @endforeach
+    <a href="practices/create"><button class="button is-rounded is-fullwidth is-success">Create new practice</button></a>
 @endsection
