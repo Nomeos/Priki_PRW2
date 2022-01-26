@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 
 
-
-
 </head>
 <body class="antialiased">
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
@@ -26,7 +24,11 @@
             <a href="/references" class="navbar-item">
                 References
             </a>
-
+            @if(\Illuminate\Support\Facades\Gate::allows('indexMod',\Illuminate\Support\Facades\Auth::user()))
+                <a href="/practices/mod" class="navbar-item">
+                    Practices
+                </a>
+            @endif
 
             @yield('navbarContent')
         </div>
@@ -44,6 +46,9 @@
                         </a>
                     </div>
                 @else
+                    <a>
+                        {{Auth::user()->role->name}}
+                    </a>
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">
                             {{Auth::user()->name}}

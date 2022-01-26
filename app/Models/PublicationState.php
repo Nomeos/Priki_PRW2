@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class PublicationState extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+
 }
