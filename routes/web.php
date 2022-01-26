@@ -24,6 +24,8 @@ Route::get('/domains/{id}', [DomainController::class, 'index']);
 Route::get('/practices',[PracticeController::class, 'index']);
 Route::get('/practices/mod',[PracticeController::class, 'indexMod'])->middleware('auth');
 Route::get('/practices/{id}',[PracticeController::class, 'show']);
+Route::get('/practices/create',[PracticeController::class, 'create']);
+Route::get('/practices/{id}/publish',[PracticeController::class, 'publish']);
 
 Route::get('/opinions/{id}',[OpinionController::class, 'show']);
 Route::post('/opinions/{id}',[OpinionController::class, 'store']);

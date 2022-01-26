@@ -87,4 +87,7 @@
             </footer>
         </div>
     @endforeach
+    @if($practice->userHasOpinion(Auth::User())&&$practice->publicationState->slug=="PRO")
+        <a href="/practices/{{$practice->id}}/publish"><button class="button is-rounded is-fullwidth is-success">Publish</button></a>
+    @endif
 @endsection

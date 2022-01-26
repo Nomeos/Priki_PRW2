@@ -37,12 +37,14 @@ class Practice extends Model
         return $this->publicationState->slug == 'PUB';
     }
 
-    public function hasUserMadeOpinion()
+    public function userHasOpinion(User $user){
+        return $this->hasMany(Opinion::class)->where("user_id","=",$user->id)->get()->Count()>0;;
+    }
+
+    public function publish()
     {
-        return Opinion::all()
-            ->where('user_id', '==', Auth::user()->id)
-            ->where('practice_id', '==', $this->id)
-            ->get()
-            ->isEmpty();
+        $publicationState = PublicationState::whereSlug("PUB")->first();
+        $this->publicationState()->associate($publicationState);
+        $this->save();
     }
 }

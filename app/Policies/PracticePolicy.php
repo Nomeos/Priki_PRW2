@@ -92,17 +92,10 @@ class PracticePolicy
         //
     }
 
-    public function publishPractice(User $user, Practice $practice){
-        if ($user->role->slug != 'MOD'){
-            return false;
-        }
-        if ($practice->publicationState->slug != 'PRO'){
-            return false;
-        }
-        if ($practice->hasUserMadeOpinion($user)) {
+    public function publish(User $user, Practice $practice){
+        if ($user->can("moderator") && $practice->userHasOpinion($user)) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 }
