@@ -89,7 +89,10 @@ class PracticeController extends Controller
         }
         $practice->title = $newTitle;
         $practice->save();
-        return redirect()->back()->with(['ok' => 'The title has been updated successfully.']);
+        return redirect()->action(
+            [PracticeController::class, 'show'], ['id' => $practice->id]
+        )->with([''=>'','ok' => 'The title has been updated successfully.']);
+
     }
 
     /**public function store(Request $request){
