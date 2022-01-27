@@ -133,7 +133,7 @@
                     </p>
                     <p class="card-footer-item">
                   <span>
-                    {{$changelog->created_at}}
+                    {{$changelog->pivot->created_at}}
                   </span>
                     </p>
                     <p class="card-footer-item">

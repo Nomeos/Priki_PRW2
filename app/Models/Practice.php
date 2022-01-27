@@ -32,7 +32,7 @@ class Practice extends Model
     }
 
     public function changelogs(){
-        return $this->belongsToMany(User::class,"changelogs")->withPivot("reason","previously");
+        return $this->belongsToMany(User::class,"changelogs")->withPivot("reason","previously","created_at");
     }
 
     public function isPublished()
