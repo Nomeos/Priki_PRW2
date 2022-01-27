@@ -23,7 +23,7 @@
                     <div class="card">
                         <header class="card-header">
                             <p class="card-header-title">
-                                Practice of : {{\App\Models\User::find($practice->user_id)->fullname}}
+                                Title : {{$practice->title}}
                             </p>
                         </header>
                         <div class="card-content">
@@ -53,5 +53,7 @@
             @endforeach
         @endif
     @endforeach
-    <a href="practices/create"><button class="button is-rounded is-fullwidth is-success">Create new practice</button></a>
+    <a href="practices/create">
+        <button class="button is-rounded is-fullwidth is-success">Create new practice</button>
+    </a>
 @endsection

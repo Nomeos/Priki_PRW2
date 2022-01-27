@@ -24,7 +24,7 @@
             <a href="/references" class="navbar-item">
                 References
             </a>
-            @if(\Illuminate\Support\Facades\Gate::allows('indexMod',\Illuminate\Support\Facades\Auth::user()))
+            @if(\Illuminate\Support\Facades\Gate::allows('moderator',\Illuminate\Support\Facades\Auth::user()))
                 <a href="/practices/mod" class="navbar-item">
                     Practices
                 </a>

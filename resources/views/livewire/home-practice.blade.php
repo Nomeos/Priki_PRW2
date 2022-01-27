@@ -5,8 +5,7 @@
         <div class="card">
             <header class="card-header">
                 <p class="card-header-title">
-                    Domain: {{$practice->domain->name}} Date
-                    : {{\Carbon\Carbon::Parse($practice->updated_at)->format("d M Y")}}
+                    Title : {{$practice->title}} Domain: {{$practice->domain->name}} Date : {{\Carbon\Carbon::Parse($practice->updated_at)->format("d M Y")}}
                 </p>
             </header>
 

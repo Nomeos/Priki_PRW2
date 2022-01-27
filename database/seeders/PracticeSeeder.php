@@ -8,6 +8,7 @@ use App\Models\PublicationState;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class PracticeSeeder extends Seeder
 {
@@ -48,11 +49,12 @@ class PracticeSeeder extends Seeder
                 'domain_id' => Domain::all()->random()->id,
                 'publication_state_id' => PublicationState::all()->random()->id,
                 'user_id' => User::all()->random()->id,
-                'updated_at' => Carbon::now()->subMinutes(rand(1, 5*24*60))
+                'updated_at' => Carbon::now()->subMinutes(rand(1, 5*24*60)),
+                'title' => Str::random(5)
             ]);
         }
 
         // and a few fake ones
-        Practice::factory(10)->create();
+        //Practice::factory(10)->create();
     }
 }

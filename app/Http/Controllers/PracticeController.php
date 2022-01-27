@@ -28,10 +28,9 @@ class PracticeController extends Controller
 
     public function indexMod()
     {
-        if (! Gate::allows('indexMod', Auth::user())) {
+        if (! Gate::allows('moderator', Auth::user())) {
             abort(403);
         }
-
 
         $practices = DB::table('practices')
             ->orderBy('domain_id')

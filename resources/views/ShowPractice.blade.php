@@ -3,7 +3,7 @@
     <div class="card">
         <header class="card-header">
             <p class="card-header-title">
-                Practice number {{$practice->id}}
+                Title : {{$practice->title}}
             </p>
         </header>
 
