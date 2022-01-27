@@ -1,9 +1,17 @@
 @extends('layout')
 @section('content')
+    @if(session()->has('ok'))
+        <h4 style="color: green;font-weight: bold">{{session()->get('ok')}}</h4>
+    @endif
+    @if(Auth::check() && Auth::User()->can('modify', $practice))
+
+        <a href="/practices/{{$practice->id}}/editTitle"> <button class="button is-success">Modification titre</button></a>
+    @endif
     <div class="card">
         <header class="card-header">
             <p class="card-header-title">
                 Title : {{$practice->title}}
+
             </p>
         </header>
 
@@ -51,20 +59,20 @@
                     {{$opinion->description}}
 
                     @if(!$opinion->references()->get()->isEmpty())
-                    <br><br><b>References :</b>
+                        <br><br><b>References :</b>
                     @else
-                    <br><br><b>References : None</b>
+                        <br><br><b>References : None</b>
                     @endif
                     <ul>
-                    @foreach($opinion->references()->get() as $reference)
-                        <li>
-                        @if($reference->url != Null)
-                        <a href="{{$reference->url}}" target="_blank">{{$reference->description}}</a><br>
-                        @else
-                            {{$reference->description}}
-                        @endif
-                        </li>
-                    @endforeach
+                        @foreach($opinion->references()->get() as $reference)
+                            <li>
+                                @if($reference->url != Null)
+                                    <a href="{{$reference->url}}" target="_blank">{{$reference->description}}</a><br>
+                                @else
+                                    {{$reference->description}}
+                                @endif
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -87,7 +95,69 @@
             </footer>
         </div>
     @endforeach
-    @if($practice->userHasOpinion(Auth::User())&&$practice->publicationState->slug=="PRO")
-        <a href="/practices/{{$practice->id}}/publish"><button class="button is-rounded is-fullwidth is-success">Publish</button></a>
+    @if($practice->changelogExist())
+        @foreach($practice->changelogs()->get() as $changelog)
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Changements
+                    </p>
+                </header>
+                <footer class="card-footer">
+                    <p class="card-footer-item">
+                  <span>
+                    Qui
+                  </span>
+                    </p>
+                    <p class="card-footer-item">
+                  <span>
+                    Quand
+                  </span>
+                    </p>
+                    <p class="card-footer-item">
+                  <span>
+                    Pourquoi
+                  </span>
+                    </p>
+                    <p class="card-footer-item">
+                  <span>
+                   Valeur précédente
+                  </span>
+                    </p>
+                </footer>
+                <footer class="card-footer">
+                    <p class="card-footer-item">
+                  <span>
+                    {{$changelog->fullname}}
+                  </span>
+                    </p>
+                    <p class="card-footer-item">
+                  <span>
+                    {{$changelog->created_at}}
+                  </span>
+                    </p>
+                    <p class="card-footer-item">
+                  <span>
+                      @if(empty($changelog->pivot->reason))
+                          -
+                      @else
+                          {{$changelog->pivot->reason}}
+                      @endif
+                  </span>
+                    </p>
+                    <p class="card-footer-item">
+                  <span>
+                   {{$changelog->pivot->previously}}
+                  </span>
+                    </p>
+                </footer>
+            </div>
+        @endforeach
+    @endif
+
+    @if(Auth::check() && $practice->userHasOpinion(Auth::User())&&$practice->publicationState->slug=="PRO")
+        <a href="/practices/{{$practice->id}}/publish">
+            <button class="button is-rounded is-fullwidth is-success">Publish</button>
+        </a>
     @endif
 @endsection

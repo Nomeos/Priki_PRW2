@@ -98,4 +98,11 @@ class PracticePolicy
         }
         return false;
     }
+    public function modify(User $user, Practice $practice){
+        if ($user->can("moderator") || $practice->isMyPractice($user)) {
+            return true;
+        }
+        return false;
+    }
+
 }

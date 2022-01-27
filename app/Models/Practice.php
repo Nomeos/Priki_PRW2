@@ -31,14 +31,25 @@ class Practice extends Model
         return $this->hasMany(Opinion::class);
     }
 
+    public function changelogs(){
+        return $this->belongsToMany(User::class,"changelogs")->withPivot("reason","previously");
+    }
+
     public function isPublished()
     {
-
         return $this->publicationState->slug == 'PUB';
     }
 
     public function userHasOpinion(User $user){
         return $this->hasMany(Opinion::class)->where("user_id","=",$user->id)->get()->Count()>0;;
+    }
+
+    public function isMyPractice(User $user){
+        return $this->user_id == $user->id;
+    }
+
+    public function changelogExist(){
+        return $this->changelogs()->get()->isNotEmpty();
     }
 
     public function publish()

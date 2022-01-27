@@ -26,6 +26,8 @@ Route::get('/practices/mod',[PracticeController::class, 'indexMod'])->middleware
 Route::get('/practices/{id}',[PracticeController::class, 'show']);
 Route::get('/practices/create',[PracticeController::class, 'create']);
 Route::get('/practices/{id}/publish',[PracticeController::class, 'publish']);
+Route::get('/practices/{id}/editTitle',[PracticeController::class, 'editTitle'])->middleware('auth');
+Route::post('/practices/{id}/saveTitle',[PracticeController::class, 'saveTitle'])->middleware('auth');
 
 Route::get('/opinions/{id}',[OpinionController::class, 'show']);
 Route::post('/opinions/{id}',[OpinionController::class, 'store']);
